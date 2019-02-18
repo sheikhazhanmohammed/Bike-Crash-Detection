@@ -9,7 +9,7 @@ int hotwire = 8;
 
 
 #include <TinyGPS.h>
-float lat = 28.721356,lon = 77.141240; // create variable for latitude and longitude object 
+float lat = 28.721356,lon = 77.141240; 
 SoftwareSerial gpsSerial(5,4);//rx,tx
 
 TinyGPS gps; // create gps object
@@ -74,11 +74,11 @@ if(ax<65)
 void SendMessage()
 {
 
-  mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
-  delay(1000);  // Delay of 1000 milli seconds or 1 second
+  mySerial.println("AT+CMGF=1");    
+  delay(1000);  
   mySerial.println("AT+CMGS=\"+919354493228\"\r"); 
   delay(1000);
-  mySerial.println("THE RIDER HAS MET WITH AN ACCIDENT");// The SMS text you want to send
+  mySerial.println("THE RIDER HAS MET WITH AN ACCIDENT");
   delay(100);
   mySerial.println("HERE IS THE LOCATION WHERE HE MET WITH AN ACCIDENT");
   delay(100);
@@ -87,17 +87,17 @@ void SendMessage()
   String longitude = String(lon,6);
   mySerial.println("Lat: "+ latitude+"; Long: "+longitude);
   delay(100);
-  mySerial.println((char)26);// ASCII code of CTRL+Z
+  mySerial.println((char)26);
   delay(1000);
 }
 void location(){
 
 
 
-    while(gpsSerial.available()){ // check for gps data
-    if(gps.encode(gpsSerial.read()))// encode gps data
+    while(gpsSerial.available()){ 
+    if(gps.encode(gpsSerial.read()))
     { 
-    gps.f_get_position(&lat,&lon); // get latitude and longitude
+    gps.f_get_position(&lat,&lon); 
     
     Serial.print("Position: ");
     Serial.print("Latitude:");
